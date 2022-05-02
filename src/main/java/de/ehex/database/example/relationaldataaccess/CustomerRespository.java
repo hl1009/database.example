@@ -11,11 +11,12 @@ public class CustomerRespository {
     @Autowired
     JdbcTemplate jdbcTemplate;
     public List<Customer> loadCustomerFromDb(){
-       List<Customer> customer =  jdbcTemplate.query(
+       List<Customer> customers =  jdbcTemplate.query(
                 "SELECT id, first_name, last_name, geburts_datum FROM customers",
                 (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"),rs.getString("geburts_datum"))
         ).stream().toList();
-       return customer;
+       return customers;
     }
 }
+
 
